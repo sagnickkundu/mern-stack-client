@@ -11,7 +11,7 @@ const Posts = ({ setCurrentId }) => {
   const [posts, setPosts] = useState([])
   const { posts1, isLoading } = useSelector((state) => state.posts);
 
-  console.log(posts);
+  console.log(isLoading);
 
   useEffect(() => {
     Axios.get("https://share-memories-123.herokuapp.com/posts")
