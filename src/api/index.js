@@ -13,8 +13,8 @@ API.interceptors.request.use((req) => {
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const fetchPosts = (page) => {
   console.log("i am here")
-  console.log(axios.get(`/posts?page=${page}`))
-  return API.get(`/posts?page=${page}`)
+  console.log(axios.get(`https://share-memories-123.herokuapp.com/posts?page=${page}`))
+  return axios.get(`https://share-memories-123.herokuapp.com/posts?page=${page}`)
 }
 
 
