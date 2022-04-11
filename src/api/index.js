@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseUrl: 'https://share-memories-123.herokuapp11.com/' });
+const URL = 'https://share-memories-123.herokuapp.com';
+const API = axios.create({ baseUrl: 'https://share-memories-123.herokuapp.com/' });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
@@ -10,22 +11,15 @@ API.interceptors.request.use((req) => {
     return req;
 });
 
-export const fetchPost = (id) => API.get(`https://share-memories-123.herokuapp.com/posts/${id}`);
-export const fetchPosts = (page) => {
-  console.log("i am here")
-  console.log(axios.get(`https://share-memories-123.herokuapp.com/posts?page=${page}`))
-  return axios.get(`https://share-memories-123.herokuapp.com/posts?page=${page}`)
-}
+export const fetchPost = (id) => API.get(`${URL}/posts/${id}`);
+export const fetchPosts = (page) => API.get(`${URL}/posts?page=${page}`);
+export const fetchPostsByCreator = (name) => API.get(`${URL}/posts/creator?name=${name}`);
+export const fetchPostsBySearch = (searchQuery) => API.get(`${URL}/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
+export const createPost = (newPost) => API.post('${URL}/posts', newPost);
+export const likePost = (id) => API.patch(`${URL}/posts/${id}/likePost`);
+export const comment = (value, id) => API.post(`${URL}/posts/${id}/commentPost`, { value });
+export const updatePost = (id, updatedPost) => API.patch(`${URL}/posts/${id}`, updatedPost);
+export const deletePost = (id) => API.delete(`${URL}/posts/${id}`);
 
-
-
-export const fetchPostsByCreator = (name) => API.get(`https://share-memories-123.herokuapp.com/posts/creator?name=${name}`);
-export const fetchPostsBySearch = (searchQuery) => API.get(`https://share-memories-123.herokuapp.com/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
-export const createPost = (newPost) => API.post('https://share-memories-123.herokuapp.com/posts', newPost);
-export const likePost = (id) => API.patch(`https://share-memories-123.herokuapp.com/posts/${id}/likePost`);
-export const comment = (value, id) => API.post(`https://share-memories-123.herokuapp.com/posts/${id}/commentPost`, { value });
-export const updatePost = (id, updatedPost) => API.patch(`https://share-memories-123.herokuapp.com/posts/${id}`, updatedPost);
-export const deletePost = (id) => API.delete(`https://share-memories-123.herokuapp.com/posts/${id}`);
-
-export const signIn = (formData) => API.post('https://share-memories-123.herokuapp.com/user/signin', formData);
-export const signUp = (formData) => API.post('https://share-memories-123.herokuapp.com/user/signup', formData);
+export const signIn = (formData) => API.post('${URL}/user/signin', formData);
+export const signUp = (formData) => API.post('${URL}/user/signup', formData);
