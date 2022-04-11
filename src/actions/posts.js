@@ -19,6 +19,7 @@ export const getPost = (id) => async (dispatch) => {
       dispatch({ type: START_LOADING });
       
       const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
+      console.log('i am here');
       dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
       dispatch({ type: END_LOADING });
     } catch (error) {

@@ -23,7 +23,6 @@ const Posts = ({ setCurrentId }) => {
   //     });
   // }, []);
 
-  console.log(posts.length);
   if (!posts.length && !isLoading) return 'No posts';
   return (
     isLoading ? <CircularProgress /> : (
