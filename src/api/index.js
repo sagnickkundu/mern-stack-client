@@ -13,7 +13,7 @@ API.interceptors.request.use((req) => {
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const fetchPosts = (page) => {
   console.log("i am here")
-  console.log(API.get(`/posts?page=${page}`))
+  console.log(axios.get(`/posts?page=${page}`))
   return API.get(`/posts?page=${page}`)
 }
 
