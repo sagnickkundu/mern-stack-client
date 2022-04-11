@@ -17,7 +17,6 @@ export const getPost = (id) => async (dispatch) => {
   export const getPosts = (page) => async (dispatch) => {
     try {
       dispatch({ type: START_LOADING });
-      console.log('i am here');
       const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
       
       dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
