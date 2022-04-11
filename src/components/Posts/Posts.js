@@ -8,22 +8,22 @@ import useStyles from './styles';
 
 const Posts = ({ setCurrentId }) => {
   const classes = useStyles();
-  const [posts, setPosts] = useState([])
-  const { posts1, isLoading } = useSelector((state) => state.posts);
+  // const [posts, setPosts] = useState([])
+  const { posts, isLoading } = useSelector((state) => state.posts);
 
-  console.log(isLoading);
+  // console.log(isLoading);
 
-  useEffect(() => {
-    Axios.get("https://share-memories-123.herokuapp.com/posts")
-      .then((response) => {
-        setPosts(response.data.data);
-      })
-      .catch(() => {
-        console.log("ERR");
-      });
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("https://share-memories-123.herokuapp.com/posts")
+  //     .then((response) => {
+  //       setPosts(response.data.data);
+  //     })
+  //     .catch(() => {
+  //       console.log("ERR");
+  //     });
+  // }, []);
 
-
+  console.log(posts.length);
   if (!posts.length && !isLoading) return 'No posts';
   return (
     isLoading ? <CircularProgress /> : (
