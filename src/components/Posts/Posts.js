@@ -8,22 +8,21 @@ import useStyles from './styles';
 
 const Posts = ({ setCurrentId }) => {
   const classes = useStyles();
-  const [data, setData] = useState([])
-  const { posts, isLoading } = useSelector((state) => state.posts);
+  const [posts, setPosts] = useState([])
+  const { posts1, isLoading } = useSelector((state) => state.posts);
+
+  console.log(posts);
 
   useEffect(() => {
     Axios.get("https://share-memories-123.herokuapp.com/posts")
       .then((response) => {
-        setData(response.data);
+        setPosts(response.data.data);
       })
       .catch(() => {
         console.log("ERR");
       });
   }, []);
 
-  console.log(data);
-
-  return 'No Posts';
 
   if (!posts.length && !isLoading) return 'No posts';
   return (
